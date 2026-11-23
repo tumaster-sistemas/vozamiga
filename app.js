@@ -69,10 +69,15 @@ async function askGemini(question) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body)
   });
-  if (!res.ok) {
+    if (!res.ok) {
     chatHistory.pop();
-    if ([400, 401, 403].includes(res.status)) throw new Error('La clave de Gemini no es válida. Toca Ajustes y revísala.');
-    throw new Error('No pude conectar. Revisa el internet e inténtalo otra vez.');
+    let apiMsg = '';
+    try { const ed = await res.json(); apiMsg = ed?.error?.message || ''; } catch (_) {}
+    console.error('Gemini error:', res.status, apiMsg);
+    if (res.status === 429) throw new Error('Estoy saturada. Espera 30 segundos e inténtalo otra vez.');
+    if (res.status === 401 || res.status === 403) throw new Error('Clave rechazada. Toca Ajustes y revísala.');
+    if (res.status === 400 && apiMsg.toLowerCase().includes('api key')) throw new Error('La clave no es válida. Toca Ajustes y revísala.');
+    throw new Error('Problema temporal del servicio. Espera unos segundos e inténtalo otra vez.');
   }
   const data = await res.json();
   const text = data?.candidates?.[0]?.content?.parts?.map(p => p.text || '').join(' ').trim();
