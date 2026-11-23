@@ -7,7 +7,7 @@ y te responde en voz alta.
 ## Equipo
 - [RODRÍGUEZ LA TORRE, Napoleón Jesús] — código y arquitectura y documentación.
 - [SIMPERTIGUE YAURI, Frank Nilser] — pitch pruebas y demos.
-
+- [MILLONES RICO, Brando Andre] — pitch pruebas y demos.
 
 ## Problema
 Los adultos mayores y personas con discapacidad quedan fuera de los servicios
