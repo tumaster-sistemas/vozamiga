@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0d3b66">
+  <title>Voz Amiga</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Voz Amiga</h1>
+    <button id="btnConfig" class="small-btn">Ajustes</button>
+  </header>
+
+  <main>
+    <section id="viewMain" class="view">
+      <p id="status" class="status">Toca el botón verde y háblame</p>
+      <button id="btnMic" class="mic-btn"><span id="micLabel">HABLAR</span></button>
+      <p id="userText" class="user-text"></p>
+      <div id="answerBox" class="answer-box" hidden>
+        <p id="answerText"></p>
+      </div>
+      <div class="actions">
+        <button id="btnEmergency" class="action-btn emergency">EMERGENCIA</button>
+        <button id="btnRead" class="action-btn read">LÉEME ESTO</button>
+      </div>
+    </section>
+
+    <section id="viewEmergency" class="view" hidden>
+      <h2>Emergencia</h2>
+      <p class="big">Toca un número y llama. Di tu nombre y dónde estás.</p>
+      <a class="phone-btn police" href="tel:105">POLICÍA<br>105</a>
+      <a class="phone-btn health" href="tel:106">AMBULANCIA<br>106</a>
+      <a class="phone-btn family" href="tel:100">VIOLENCIA FAMILIAR<br>100</a>
+      <div class="steps">
+        <p>1. Mantén la calma y busca un lugar seguro.</p>
+        <p>2. Toca el número que necesitas.</p>
+        <p>3. Si no puedes hablar, pide a alguien que te acompañe.</p>
+      </div>
+      <button id="btnBackEmergency" class="back-btn">VOLVER</button>
+    </section>
+
+    <section id="viewRead" class="view" hidden>
+      <h2>Léeme esto</h2>
+      <textarea id="readText" class="read-area" placeholder="Pega o escribe aquí el texto que quieres escuchar"></textarea>
+      <button id="btnSpeak" class="action-btn read">LEER EN VOZ ALTA</button>
+      <button id="btnStopRead" class="action-btn stop">DETENER</button>
+      <button id="btnBackRead" class="back-btn">VOLVER</button>
+    </section>
+  </main>
+
+  <div id="configModal" class="modal" hidden>
+    <div class="modal-card">
+      <h2>Configuración</h2>
+      <p>Tu clave de Gemini se guarda solo en este dispositivo. Nunca se sube a internet.</p>
+      <input id="apiKeyInput" type="password" class="key-input" placeholder="Pega aquí tu API key de Gemini">
+      <button id="btnSaveKey" class="action-btn read">GUARDAR</button>
+      <button id="btnCloseConfig" class="back-btn">CERRAR</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
